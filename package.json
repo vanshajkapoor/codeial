@@ -1,0 +1,19 @@
+{
+  "name": "codeial",
+  "version": "1.0.0",
+  "description": "My Social App",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social",
+    "application"
+  ],
+  "author": "Vanshaj Kapoor",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
