@@ -7,10 +7,18 @@ const port =8000;
 
 const app=express();
 
+//setting up static access
+app.use(express.static('./assets'));
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
+
+
 
 //using  my layout library
 const expressLayouts=require('express-ejs-layouts');
 app.use(expressLayouts);
+
+
 
 
 //routes
