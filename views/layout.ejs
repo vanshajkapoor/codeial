@@ -2,13 +2,21 @@
     <head>
         <title><%= title %></title>
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%- style %>
     </head>
 
+    
+
     <%- include('_header'); %>
+    
 
+
+    <main id="main-content">
     <%- body %>
-
+    </main>
     <%- include('_footer'); %>
 
     <%- script %>

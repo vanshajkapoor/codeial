@@ -10,12 +10,20 @@ module.exports.displayPic=function(req,res){
 };
 
 module.exports.signUp=function(req,res){
+
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render('sign-up',{
         title:"Sign Up"
     });
 };
 
 module.exports.signIn=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('sign-in',{
         title:"Sign In"
     });
@@ -56,5 +64,19 @@ module.exports.create =function(req,res){
 
 //sign in and create the session for the user
 module.exports.createSession =function(req,res){
-    //TODO Later
+    return res.redirect('/');
+}
+
+module.exports.destroySession=function(req,res){
+    req.logout(); //this is method of logging out passed by passport
+    req.session.destroy(function(err){
+        if(err){
+            console.log("cannot destroy session");
+            return;
+        }
+        return res.redirect('/');
+    });
+    // res.clearCookie('codeial');
+    
+    // return res.redirect('/');
 }
