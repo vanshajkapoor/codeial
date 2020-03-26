@@ -12,7 +12,16 @@ module.exports.home=function(req,res){
 
     //pre populating the user with getting its information from user table inside field of user in posts
 
-    Post.find({}).populate('user').exec(function(err,posts){
+    Post.find({})
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate: {
+            path:'user'
+        }
+
+    })
+    .exec(function(err,posts){
         return res.render('home',{
             title:'Codial | Home',
             posts:posts
