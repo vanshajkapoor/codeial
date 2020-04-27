@@ -1,9 +1,26 @@
 const User=require('../models/user');
 module.exports.profile=function(req,res){
-    return res.render('user',{
-        title:"User"
-    });
+
+    User.findById(req.params.id,function(err,users){
+        return res.render('user',{
+            title:"User",
+            profile_users:users
+        });
+
+    })
+
+    
 };
+
+module.exports.update=function(req,res){
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            return res.redirect('back');
+        });
+    }else{
+        return res.status(401).send('Unauthorized');
+    }
+}
 
 module.exports.displayPic=function(req,res){
     return res.end('<h1>Users Display Picture</h1>');
@@ -64,18 +81,14 @@ module.exports.create =function(req,res){
 
 //sign in and create the session for the user
 module.exports.createSession =function(req,res){
+    req.flash('success','Logged in Sucessfully !')
     return res.redirect('/');
 }
 
 module.exports.destroySession=function(req,res){
     req.logout(); //this is method of logging out passed by passport
-    req.session.destroy(function(err){
-        if(err){
-            console.log("cannot destroy session");
-            return;
-        }
-        return res.redirect('/');
-    });
+    req.flash('success','You have Logged Out !');
+    return res.redirect('/');
     // res.clearCookie('codeial');
     
     // return res.redirect('/');
