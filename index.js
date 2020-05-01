@@ -1,6 +1,7 @@
 const express=require('express');
 const cookieParser=require('cookie-parser');
 
+
 const port =8000;
 const app=express();
 
@@ -29,6 +30,8 @@ const db=require('./config/mongoose');
 
 //setting up static access
 app.use(express.static('./assets'));
+//make the uploads path available to browser
+app.use('/uploads',express.static(__dirname + '/uploads'));
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 
