@@ -9,5 +9,6 @@ router.get('/home-trending',homeController.trending);
 router.use('/users',require('./users'));//when /user/xyz comes in it will require users.js and map to corresponding controller
 router.use('/posts',require('./posts'));
 router.use('/comments',require('./comments'));
+router.use('/api',require('./api'))
 console.log("Router Loaded");
 module.exports=router;
